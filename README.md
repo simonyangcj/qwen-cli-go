@@ -28,8 +28,7 @@
 
 ```bash
 # download it
-# or go with http git clone http://gitlab.sh.99cloud.net/fun-bu/qwen-cli-go.git
-$ git clone git@gitlab.sh.99cloud.net:fun-bu/qwen-cli-go.git
+# you know what to do
 ```
 
 ### build it
