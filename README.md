@@ -1,6 +1,6 @@
 # QWen cli 使用手册
 
-本文档描述了阿里云大模型 Qwen-70B 的共有云部署的 api 调用工具，供大家学习参考和使用
+本文档描述了阿里云大模型 Qwen-72B 的共有云部署的 api 调用工具，供大家学习参考和使用
 
 ## why we need it instead of use it on browser directly
 
