@@ -2,11 +2,14 @@ package app
 
 import (
 	"fmt"
+	"os"
+	"runtime"
 
 	"qwen-cli/cmd/qwen/app/option"
 
 	"github.com/common-nighthawk/go-figure"
 	"github.com/spf13/cobra"
+	"k8s.io/client-go/util/homedir"
 )
 
 func NewCommand(version string) *cobra.Command {
@@ -27,7 +30,16 @@ func NewCommand(version string) *cobra.Command {
 		},
 	}
 
-	opts.BindFlags(cmd.PersistentFlags())
+	homedir := homedir.HomeDir()
+	if runtime.GOOS == "darwin" {
+		var err error
+		homedir, err = os.UserHomeDir()
+		if err != nil {
+			panic(err)
+		}
+	}
+
+	opts.BindFlags(cmd.PersistentFlags(), homedir)
 	cmd.AddCommand(versionCmd, CreateConversationCommand(opts.ConversationStorageDir), CreatePromptCommand(opts))
 
 	return cmd

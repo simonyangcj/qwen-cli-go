@@ -4,7 +4,6 @@ import (
 	"path"
 
 	"github.com/spf13/pflag"
-	"k8s.io/client-go/util/homedir"
 )
 
 type GlobalOptions struct {
@@ -23,10 +22,10 @@ type PromptOptions struct {
 	Timeout         int
 }
 
-func (option *GlobalOptions) BindFlags(fs *pflag.FlagSet) {
-	fs.StringVarP(&option.ParameterConfigFile, "parameter-config", "p", path.Join(homedir.HomeDir(), ".qwen-cli", "parameter-config.json"), "parameter config file location")
-	fs.StringVarP(&option.ApiConfigFile, "api-config", "a", path.Join(homedir.HomeDir(), ".qwen-cli", "api-config.json"), "api config file location")
-	fs.StringVarP(&option.ConversationStorageDir, "conversation-storage-dir", "s", path.Join(homedir.HomeDir(), ".qwen-cli", "conversation"), "conversation storage directory")
+func (option *GlobalOptions) BindFlags(fs *pflag.FlagSet, homeDir string) {
+	fs.StringVarP(&option.ParameterConfigFile, "parameter-config", "p", path.Join(homeDir, ".qwen-cli", "parameter-config.json"), "parameter config file location")
+	fs.StringVarP(&option.ApiConfigFile, "api-config", "a", path.Join(homeDir, ".qwen-cli", "api-config.json"), "api config file location")
+	fs.StringVarP(&option.ConversationStorageDir, "conversation-storage-dir", "s", path.Join(homeDir, ".qwen-cli", "conversation"), "conversation storage directory")
 }
 
 func (option *PromptOptions) BindPromptFlags(fs *pflag.FlagSet) {
